@@ -1,11 +1,10 @@
 package ru.fazlyev.linkshortener.dto;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.ZonedDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +15,4 @@ public class CreateShortLinkRequest {
     private ZonedDateTime endTime;
     private String description;
     private Boolean active;
-
-
-
 }
