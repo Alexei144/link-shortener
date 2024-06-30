@@ -20,7 +20,7 @@ public class LinkInfo {
     private String description;
     private Boolean active;
     private String shortLink;
-    private int openingCount;
+    private Long openingCount;
 
     @Override
     public boolean equals(Object o) {

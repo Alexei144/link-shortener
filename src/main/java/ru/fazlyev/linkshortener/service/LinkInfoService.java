@@ -18,7 +18,7 @@ public class LinkInfoService {
         linkInfo.setDescription(request.getDescription());
         linkInfo.setActive(request.getActive());
         linkInfo.setShortLink(generateShortLink(request));
-        linkInfo.setOpeningCount(0);
+        linkInfo.setOpeningCount(0L);
         return repository.saveShortLink(linkInfo);
     }
 
