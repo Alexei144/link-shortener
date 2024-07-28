@@ -1,11 +1,12 @@
 package ru.fazlyev.linkshortener.service;
 
 import ru.fazlyev.linkshortener.dto.CreateShortLinkRequest;
+import ru.fazlyev.linkshortener.dto.CreateShortLinkResponse;
 import ru.fazlyev.linkshortener.model.LinkInfo;
 
 public interface LinkInfoService {
 
-    public LinkInfo createLinkInfo(CreateShortLinkRequest request);
+    CreateShortLinkResponse createLinkInfo(CreateShortLinkRequest request);
 
-    public String getByShortLink(String shortLink);
+    public LinkInfo getByShortLink(String shortLink);
 }

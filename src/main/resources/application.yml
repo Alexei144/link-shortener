@@ -1,2 +1,10 @@
-link-shortner:
+server:
+  port: 8080
+
+spring:
+  application:
+    name: link-shortener
+
+link-shortener:
   short-link-length: 8
+  enable-log-exec-time: true
