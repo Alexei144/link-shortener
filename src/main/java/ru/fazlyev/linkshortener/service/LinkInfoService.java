@@ -1,7 +1,8 @@
 package ru.fazlyev.linkshortener.service;
 
-import ru.fazlyev.linkshortener.dto.CreateShortLinkRequest;
-import ru.fazlyev.linkshortener.dto.CreateShortLinkResponse;
+import ru.fazlyev.linkshortener.dto.ShortLinkRequest;
+import ru.fazlyev.linkshortener.dto.FilterLinkInfoRequest;
+import ru.fazlyev.linkshortener.dto.LinkInfoResponse;
 import ru.fazlyev.linkshortener.model.LinkInfo;
 
 import java.util.List;
@@ -9,11 +10,13 @@ import java.util.UUID;
 
 public interface LinkInfoService {
 
-    CreateShortLinkResponse createLinkInfo(CreateShortLinkRequest request);
+    LinkInfoResponse createLinkInfo(ShortLinkRequest request);
 
     LinkInfo getByShortLink(String shortLink);
 
-    List<LinkInfo> getAllShortLinks();
+    List<LinkInfoResponse> findByFilter(FilterLinkInfoRequest filterLinkInfoRequest);
 
-    void delete (UUID id);
+    void deleteById (UUID id);
+
+    LinkInfoResponse updateById(ShortLinkRequest shortLinkRequest, String shortLink);
 }
