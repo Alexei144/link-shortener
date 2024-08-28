@@ -14,7 +14,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShortLinkRequest {
+public class CreateShortLinkRequest {
 
     @NotEmpty(message = "Ссылка не может быть пустой")
     @Size(min = 10, max = 4096, message = "Длина ссылки должна быть не меньше 10 и не больше 4096")
@@ -31,7 +31,7 @@ public class ShortLinkRequest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
-        ShortLinkRequest that = (ShortLinkRequest) o;
+        CreateShortLinkRequest that = (CreateShortLinkRequest) o;
         return Objects.equals(link, that.link);
     }
 }

@@ -16,7 +16,7 @@ public class AuditableEntity {
     private ZonedDateTime createTime;
     private ZonedDateTime updateTime;
 
-     @PrePersist
+    @PrePersist
     public void prePersist() {
          this.createTime = ZonedDateTime.now();
          this.updateTime = ZonedDateTime.now();

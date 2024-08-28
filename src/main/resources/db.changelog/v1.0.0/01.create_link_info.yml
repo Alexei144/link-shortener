@@ -47,29 +47,3 @@ databaseChangeLog:
                   name: update_time
                   type: timestamptz
                   remarks: "Время обновления"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

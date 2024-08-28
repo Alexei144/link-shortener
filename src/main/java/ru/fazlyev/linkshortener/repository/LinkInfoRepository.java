@@ -1,4 +1,6 @@
 package ru.fazlyev.linkshortener.repository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,13 +24,14 @@ public interface LinkInfoRepository extends JpaRepository<LinkInfo, UUID> {
         AND (:descriptionPart IS NULL OR li.description LIKE '%' || :descriptionPart || '%')
         AND (:active IS NULL OR li.active = :active)
         """)
-    List<LinkInfo> findByFilter( String linkPart,
-                                 ZonedDateTime endTimeFrom,
-                                 ZonedDateTime endTimeTo,
-                                 String descriptionPart,
-                                 Boolean active);
+    Page<LinkInfo> findByFilter(String linkPart,
+                                ZonedDateTime endTimeFrom,
+                                ZonedDateTime endTimeTo,
+                                String descriptionPart,
+                                Boolean active,
+                                Pageable pageable);
 
-    Optional<LinkInfo> findByShortLinkAndActiveTrue(String shortLink);
+    Optional<LinkInfo> findByShortLinkAndActiveTrueAndEndTimeIsAfter(String shortLink, ZonedDateTime endTimeAfter);
 
     @Query("""
         UPDATE LinkInfo li

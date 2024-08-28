@@ -19,6 +19,4 @@ public class LinkInfoResponse {
     private Boolean active;
     private String shortLink;
     private Long openingCount;
-
-
 }

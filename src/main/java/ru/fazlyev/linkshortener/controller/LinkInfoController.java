@@ -2,11 +2,11 @@ package ru.fazlyev.linkshortener.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.fazlyev.linkshortener.dto.ShortLinkRequest;
+import ru.fazlyev.linkshortener.dto.CreateShortLinkRequest;
 import ru.fazlyev.linkshortener.dto.FilterLinkInfoRequest;
 import ru.fazlyev.linkshortener.dto.LinkInfoResponse;
+import ru.fazlyev.linkshortener.dto.UpdateLinkInfoRequest;
 import ru.fazlyev.linkshortener.dto.common.CommonRequest;
 import ru.fazlyev.linkshortener.dto.common.CommonResponse;
 import ru.fazlyev.linkshortener.dto.IdRequest;
@@ -35,7 +35,7 @@ public class LinkInfoController {
 
     @PostMapping()
     public CommonResponse<LinkInfoResponse> postCreateShortLink(
-            @RequestBody @Valid CommonRequest<ShortLinkRequest> request) {
+            @RequestBody @Valid CommonRequest<CreateShortLinkRequest> request) {
         log.info("Поступил запрос на создание короткой ссылки: {}", request);
 
         LinkInfoResponse createLinkInfoResponse = linkInfoService.createLinkInfo(request.getBody());
@@ -45,9 +45,8 @@ public class LinkInfoController {
                 .build();
     }
 
-    @DeleteMapping
-    public CommonResponse<?> deleteById(@RequestBody @Validated CommonRequest<IdRequest> request) {
-        log.info("Поступил запрос на удаление ссылки: {}", request.getBody().getId());
+    @DeleteMapping("/{id}")
+    public CommonResponse<?> deleteById(@RequestBody @Valid CommonRequest<IdRequest> request) {
 
         linkInfoService.deleteById(request.getBody().getId());
 
@@ -56,30 +55,12 @@ public class LinkInfoController {
     }
 
     @PutMapping
-    public CommonResponse<LinkInfoResponse> updateByShortLink(@PathVariable String shortLink,
-                                                              @RequestBody @Valid CommonRequest<ShortLinkRequest> request) {
-        log.info("Поступил запрос на обновление ссылки: {}", shortLink);
+    public CommonResponse<LinkInfoResponse> update(@RequestBody @Valid CommonRequest<UpdateLinkInfoRequest> request) {
+
+        LinkInfoResponse linkInfoResponse = linkInfoService.updateById(request.getBody());
 
         return CommonResponse.<LinkInfoResponse>builder()
-                .body(linkInfoService.updateById(request.getBody(), shortLink))
+                .body(linkInfoResponse)
                 .build();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
